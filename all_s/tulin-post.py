@@ -9,7 +9,7 @@ def get_response(msg):
     }
     try:
         r = requests.post(apiUrl, data=data).json()
-        return r.get(text) r.get(list)
+        return r.get('text')
     except:
         return
 def chat(a):
