@@ -42,7 +42,6 @@ def show(tr,res):
 
 
 def main():
-    E.delete(0.0,END)
     tr = s.get(1.0,END).strip()  #得到输入框
     if not tr:
         return
@@ -50,10 +49,10 @@ def main():
     resul = get_html(tr,tk)
     res = jiexi(resul)
 
-
+    E.delete(0.0,END)
     E.insert(INSERT,res)
     E.tag_add("w","0.9","3.12")
-    E.tag_config("w",font=("宋体",20))
+    E.tag_config("w",font=("微软雅黑",15))
 
 
     
@@ -61,14 +60,22 @@ def mytk():
     t = Tk()     #窗口对象
     t.title("qsx中英互译")  #窗口标题
     t.geometry("500x200") 
+
+
+
     global s     #尺寸
     s = Text(t,height=6,width=60)  #输入框属性
     s.place(relx=0,rely=0)   #输入框位置
-    s.insert(INSERT," ")
+    s.insert(INSERT,s.get(1.0,END))
     
-    s.tag_add("w","0.9","3.12")
-    s.tag_config("w",font=("宋体",30))
+    s.tag_add("w","0.0","3.12")
+    s.tag_config("w",font=("微软雅黑",15))
+
+
+
     Button(t,text="翻译",font=("楷体",15),command=main).place(relx=0.88,rely=0.05)  #执行按钮
+
+
     global E
     E = Text(t,height=6,width=60)  #输出框属性
     E.place(relx=0,rely=0.5)
