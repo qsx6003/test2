@@ -1,9 +1,13 @@
 import json,requests
 def yinyue():
     geming=input("请输入歌名：")
+    data={'key':geming}
     header = { 'Host': 'c.y.qq.com','Referer': 'http://c.y.qq.com/','User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:62.0) Gecko/20100101 Firefox/62.0'}
-    url = 'https://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg?is_xml=0&format=jsonp&key=%s&g_tk=5381&jsonpCallback=SmartboxKeysCallbackmod_top_search1814&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&#172;ice=0&platform=yqq&needNewCode=0'%geming
-    da=requests.get(url,headers=header)
+    url = 'https://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg?is_xml=0&format=jsonp&'\
+            'g_tk=5381&jsonpCallback=SmartboxKeysCallbackmod_top_search1814'\
+            '&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&'\
+            'outCharset=utf-8#172;ice=0&platform=yqq&needNewCode=0h'
+    da=requests.get(url,params=data,headers=header)
     html = json.loads(da.text.strip('SmartboxKeysCallbackmod_top_search1814()[]'))
     html=html["data"]
     html=html["song"]
@@ -41,13 +45,19 @@ def url():
         select = int(input("请选择要下载的音质:"))
         url=list[select]
         print("下载中，请稍后....")
-        url=requests.get(url).content
-        with open("E:\\mp3\\{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
+        header =  {
+    'Accept': '*/*',
+'Accept-Encoding': 'identity;q=1, *;q=0',
+'Accept-Language': 'zh-CN,zh;q=0.9',
+'Connection': 'keep-alive',
+'Host': 'dl.stream.qqmusic.qq.com',
+'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+
+}
+        url=requests.get(url,headers= header).content
+        with open("{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
             wj.write(url)
             print("歌曲下载成功")
  
 if __name__ == '__main__':
-     try:
-        url()
-     except BaseException:
-                print("歌曲或链接不存在")
+    url()
