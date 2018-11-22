@@ -80,6 +80,13 @@ def main(s):
     
 def mytk():
     global t    
+
+
+
+
+
+
+
     t = Tk()     #窗口对象
     t.attributes("-alpha",0.9)
     t.attributes("-transparentcolor","red")
