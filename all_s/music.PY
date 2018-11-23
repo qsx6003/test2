@@ -1,4 +1,5 @@
 import json,requests
+from mkdir import *
 def yinyue():
     geming=input("请输入歌名：")
     data={'key':geming}
@@ -29,7 +30,7 @@ def url():
         da=requests.post(ur,data=mid)
         html=json.loads(da.text)
         html=json.loads(html)
-        geshou=html["singername"]
+        geshou=html["singername"].replace("/","-").replace(" ","")
         geming=html["songname"]
         m4a=html["m4a"]
         mp31=html["mp3_h"]
@@ -46,16 +47,19 @@ def url():
         url=list[select]
         print("下载中，请稍后....")
         header =  {
-    'Accept': '*/*',
-'Accept-Encoding': 'identity;q=1, *;q=0',
-'Accept-Language': 'zh-CN,zh;q=0.9',
-'Connection': 'keep-alive',
-'Host': 'dl.stream.qqmusic.qq.com',
-'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
-
-}
+                'Accept': '*/*',
+                'Accept-Encoding': 'identity;q=1, *;q=0',
+                'Accept-Language': 'zh-CN,zh;q=0.9',
+                'Connection': 'keep-alive',
+                'Host': 'dl.stream.qqmusic.qq.com',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+                    }
         url=requests.get(url,headers= header).content
-        with open("D:/MP3/{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
+        path = "d:/音乐"
+        f = mymkdir(path)
+        f.mkdir()
+        print(path+"{}.mp3".format(("%s-%s"%(geming,geshou))))
+        with open(path+"/{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
             wj.write(url)
             print("歌曲下载成功")
  
