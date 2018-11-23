@@ -55,7 +55,7 @@ def url():
 
 }
         url=requests.get(url,headers= header).content
-        with open("{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
+        with open("D:/MP3/{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
             wj.write(url)
             print("歌曲下载成功")
  

@@ -40,9 +40,7 @@ def show(tr,res):
 
 def main():
     while True:
-        # a = chat(0)
-        a = input("请输入要翻译的内容>>: ")
-        tr = a
+        tr = input("请输入要翻译的内容>>: ")
         if not tr:
             break
         tk = get_data(tr)
