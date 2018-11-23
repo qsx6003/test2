@@ -94,7 +94,7 @@ def mytk():
     t.title(' '*50+'qsx中英互译')  #窗口标题
     t.geometry("500x208") #尺寸
     t.resizable(False,False)
-    path = PhotoImage(file="English-Chinese/335.png")
+    path = PhotoImage(file="D:/test2/English-Chinese/335.png")
     Label(t,image=path,compound=CENTER).pack()     
     s = Text(t,height=6,width=60,fg="black",bg="teal")  #输入框属性
     s.place(relx=0,rely=0)   #输入框位置
