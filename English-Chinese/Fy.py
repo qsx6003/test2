@@ -1,3 +1,5 @@
+#coding : UTF-8
+
 from tkinter import *
 import requests
 from getk import Py4Js
@@ -52,7 +54,6 @@ def copy(E):
 def paste(s):
     s.event_generate('<<Paste>>')
 
-
 def main(s):
     start = time.time()
     tr = s.get(1.0,END).strip()  #得到输入框
@@ -75,18 +76,17 @@ def main(s):
     T.insert(INSERT,"用 时 : {} 秒".format(m))
     T.tag_add("w","0.9","3.12")
     T.tag_config("w",font=("微软雅黑",12))
-    
-    
+
+    global baocun
+
+    def baocun():
+        with open("C:/Users/Administrator/Desktop/cidian.txt","a") as f:
+            f.write("%s ----> %s\n" %(tr,res))
+            # f.write("\n")
+            
     
 def mytk():
     global t    
-
-
-
-
-
-
-
     t = Tk()     #窗口对象
     t.attributes("-alpha",0.9)
     t.attributes("-transparentcolor","red")
@@ -98,15 +98,15 @@ def mytk():
     Label(t,image=path,compound=CENTER).pack()     
     s = Text(t,height=6,width=60,fg="black",bg="teal")  #输入框属性
     s.place(relx=0,rely=0)   #输入框位置
-    s.insert(INSERT,s.get(1.0,END))
-    
+    s.insert(INSERT,s.get(1.0,END)) 
     s.tag_add("w","0.0","3.12")
     s.tag_config("w",font=("微软雅黑",15))
     Button(t,text="翻译",font=("楷体",15),command=lambda:main(s),bg="aqua")\
             .place(relx=0.88,rely=0.05)  #执行按钮
     Button(t,text="清空",font=("楷体",15),command=lambda:flush(s),bg="pink")\
             .place(relx=0.88,rely=0.80)  #清空
-   
+    Button(t,text="保存",font=("楷体",15),command=lambda:baocun(),bg="Tan",fg="black")\
+            .place(relx=0.88,rely=0.40)  #保存
     global E   #输出文本框
     E = Text(t,height=7.5,width=60,fg="black",bg="teal")  #输出框属性
     E.place(relx=0,rely=0.35)
