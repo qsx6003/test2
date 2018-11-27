@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
-# Author : 魏明择
+# Author : qsx
 # Date   : 2017
 
 # 参考网址: http://2048game.com/
