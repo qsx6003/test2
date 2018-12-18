@@ -21,5 +21,10 @@ class mymkdir:
         return path
 
     def findfile(self):
-        mylist = os.path.listdir(self.path)
+        mylist = os.listdir(self.path)
         return mylist
+if __name__ == '__main__':
+    f = mymkdir('d:/音乐')
+
+    l = f.findfile()
+    print(l)

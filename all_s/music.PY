@@ -54,14 +54,16 @@ def url():
                 'Host': 'dl.stream.qqmusic.qq.com',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
                     }
-        url=requests.get(url,headers= header).content
+        url=requests.get(url,headers= header).contxient
         path = "d:/音乐"
-        f = mymkdir(path)
-        f.mkdir()
+        # f = mymkdir(path)
+        # f.mkdir()
         print(path+"{}.mp3".format(("%s-%s"%(geming,geshou))))
         with open(path+"/{}.mp3".format(("%s-%s"%(geming,geshou))),'wb')as wj:
             wj.write(url)
             print("歌曲下载成功")
+        l = f.findfile()
+        print(l)
  
 if __name__ == '__main__':
     url()
